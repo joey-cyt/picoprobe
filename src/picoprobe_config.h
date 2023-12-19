@@ -65,10 +65,16 @@ do { \
 
 // TODO tie this up with PICO_BOARD defines in the main SDK
 
-#ifndef DEBUGPROBE 
-#include "board_pico_config.h"
+#if defined(PicoProbe)
+	#include "board_pico_config.h"
+#elif defined(DebugProbe)
+	#include "board_debugprobe_config.h"
+#elif defined(Tiny2040Probe)
+	#include "board_tiny2040_config.h"
+#elif defined(V2Probe)
+	#include "board_v2_config.h"
 #else
-#include "board_debugprobe_config.h"
+	#error "No probe board is defined"
 #endif
 //#include "board_example_config.h"
 
